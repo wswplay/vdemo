@@ -6,6 +6,17 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {}
+  },
+  mounted() {
+    console.log('process.env', process.env.VUE_APP_SECRET)
+    console.log('NODE_ENV', process.env.NODE_ENV)
+    console.log('BASE_URL', process.env.BASE_URL)
+  }
+};
 </script>
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+
+</style>
