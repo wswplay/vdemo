@@ -10,11 +10,7 @@ export default {
   data() {
     return {}
   },
-  mounted() {
-    console.log('process.env', process.env.VUE_APP_SECRET)
-    console.log('NODE_ENV', process.env.NODE_ENV)
-    console.log('BASE_URL', process.env.BASE_URL)
-  }
+  mounted() {}
 };
 </script>
 <style lang="less" scoped>
