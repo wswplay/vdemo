@@ -6,7 +6,7 @@
     "dev": "vue-cli-service serve --open",
     "d": "vue-cli-service serve --open",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --report",
+    "build": "vue-cli-service build",
     "b": "vue-cli-service build --report --report-json",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
