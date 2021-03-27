@@ -2,9 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import './style/reset.css'
-import './style/globalStyle.css'
-// import '~@/style/variable.less'
+import '@/style/index.less';
 
 Vue.config.productionTip = false;
 

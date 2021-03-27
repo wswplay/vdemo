@@ -1,12 +1,22 @@
 <template>
   <div class="main gBoxInsetShadow">
-    <router-view />
+    <transition name="fade-transform" mode="out-in">
+      <router-view />
+    </transition>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Main'
+  name: 'Main',
+  data() {
+    return {}
+  },
+  computed: {
+    key() {
+      return this.$route.path
+    }
+  }
 }
 </script>
 
