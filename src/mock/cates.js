@@ -9,7 +9,7 @@ export const CateList = [
       },
       {
         name: '栈',
-        path: '/navbar/stack',
+        path: 'stack',
       },
       {
         name: '堆',

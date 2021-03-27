@@ -7,7 +7,8 @@
     "d": "vue-cli-service serve --open",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "b": "vue-cli-service build --report --report-json",
+    "b": "vue-cli-service build --report",
+    "bj": "vue-cli-service build --report --report-json",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "in": "vue-cli-service inspect > webpackDefaultConfig.js"

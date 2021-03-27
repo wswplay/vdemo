@@ -1,5 +1,7 @@
 <template>
-  <div class="main gBoxInsetShadow">主要内容区域</div>
+  <div class="main gBoxInsetShadow">
+    <router-view />
+  </div>
 </template>
 
 <script>

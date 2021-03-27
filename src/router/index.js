@@ -1,38 +1,29 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "@/views/Home.vue";
-import NavBar from "@/views/NavBar.vue";
-import LeftBar from "@/views/LeftBar.vue";
-import Main from "@/views/Main.vue";
+import Layout from "@/views/Layout.vue";
+import Stack from "@/components/Stack"
+import Memory from "@/components/Memory"
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    components: {
-      NavBar,
-      LeftBar,
-      Main
-    }
-  },
-  {
-    path: "/navbar",
-    name: "NavBar",
-    component: NavBar,
+    name: "Layout",
+    component: Layout,
     children: [
       {
         path: "stack",
-        name: "stack",
-        component: Main,
+        name: "Stack",
+        component: Stack,
+      },
+      {
+        path: "memory",
+        name: "Memory",
+        component: Memory,
       },
     ]
   },
-  // {
-  //   path: "/",
-  //   name: "Home",
-  //   component: Home,
-  // },
   {
     path: "/about",
     name: "About",
