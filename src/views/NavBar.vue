@@ -1,5 +1,8 @@
 <template>
-  <div class="nav-bar">导航条</div>
+  <div class="nav-bar gBoxInsetShadow">
+    Demo页面欢迎您！
+    <router-link to="/about">关于</router-link>
+  </div>
 </template>
 
 <script>
@@ -12,6 +15,6 @@ export default {
 @import "~@/style/variable.less";
 .nav-bar {
   line-height: 50px;
-  border: 1px dashed @borderColor;
+  // border: 1px dashed @borderColor;
 }
 </style>
