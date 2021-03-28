@@ -20,6 +20,11 @@ const routes = [
         name: "Memory",
         component: () => import(/* webpackChunkName: "memory" */ "@/components/Memory.vue"),
       },
+      {
+        path: "xcollapse",
+        name: "Xcollapse",
+        component: () => import(/* webpackChunkName: "xcollapse" */ "@/xvui/xcollapse.vue"),
+      },
     ]
   },
   {

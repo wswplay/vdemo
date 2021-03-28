@@ -13,7 +13,7 @@ export const CateList = [
       },
       {
         name: '堆',
-        path: 'heap',
+        path: 'heap', 
       }
     ]
   },
@@ -32,6 +32,16 @@ export const CateList = [
           {
             name: '普通对象',
             path: 'nomral',
+            children: [
+              {
+                name: '普11111',
+                path: 'pu1',
+              },
+              {
+                name: '普222222',
+                path: 'pu2',
+              },
+            ]
           }
         ]
       },
