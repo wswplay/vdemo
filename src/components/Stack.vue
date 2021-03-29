@@ -1,16 +1,14 @@
 <template>
   <div class="stack">
       stack的内容
-      <Parent />
   </div>
 </template>
 
 <script>
-import Parent from '@/xvui/parent'
 import { CateList } from '@/mock/cates'
 export default {
   name: 'Stack',
-  components: { Parent },
+  components: { },
   data() {
     return {
       cateArr: []
