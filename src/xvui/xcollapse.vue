@@ -57,8 +57,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    // border-left: 1px solid #aaa;
-    border-bottom: 1px solid #aaa;
+    border-bottom: 1px solid rgb(219, 250, 250);
     transition: all 0.6s;
     &:hover {
       background-color: #eff;
@@ -75,12 +74,21 @@ export default {
     transition: all 0.6s;
     overflow: hidden;
     will-change: height;
-    padding-left: 10px;
-    // a, .title {
-    //   padding-left: 10px;
-    // }
     &.close {
       height: 0;
+    }
+    a, .title {
+      text-indent: 10px;
+    }
+    .content_wrapper {
+      a, .title {
+        text-indent: 20px;
+      }
+      .content_wrapper {
+        a, .title {
+          text-indent: 30px;
+        }
+      }
     }
   }
 }
