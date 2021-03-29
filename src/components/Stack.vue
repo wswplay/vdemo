@@ -1,17 +1,16 @@
 <template>
   <div class="stack">
-    <div class="cate-list">
-      <XcollapseTree :list="cateArr" />
-    </div>
+      stack的内容
+      <Parent />
   </div>
 </template>
 
 <script>
-import XcollapseTree from '@/xvui/xcollapse-tree'
+import Parent from '@/xvui/parent'
 import { CateList } from '@/mock/cates'
 export default {
   name: 'Stack',
-  components: { XcollapseTree },
+  components: { Parent },
   data() {
     return {
       cateArr: []
@@ -25,12 +24,13 @@ export default {
 
 <style lang="less" scoped>
 .stack {
+  text-align: left;
   // color: #fff;
   // font-size: 50px;
   // line-height: 300px;
   // background-color: rgb(224, 204, 178);
-  .cate-list {
-    width: 200px;
-  }
+  // .cate-list {
+  //   width: 200px;
+  // }
 }
 </style>

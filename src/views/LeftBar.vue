@@ -1,16 +1,17 @@
 <template>
   <div class="left-bar gBoxInsetShadow">
-    <CateTree :list="cateArr" />
+    <XcollapseTree :list="cateArr" />
   </div>
 </template>
 
 <script>
 import { CateList } from '@/mock/cates'
-import CateTree from '@/components/cate/cate-tree'
+// import CateTree from '@/components/cate/cate-tree'
+import XcollapseTree from '@/xvui/xcollapse-tree'
 
 export default {
   name: 'LeftBar',
-  components: { CateTree },
+  components: { XcollapseTree },
   data() {
     return {
       cateArr: []
