@@ -8,5 +8,5 @@ app.use(ctx => {
 app.listen('3000', () => {
   console.log('server is running at localhost: 3000');
 });
-// Mac is open
+// Mac is open yes!
 exec('open http://127.0.0.1:3000/');
