@@ -34,7 +34,8 @@ export default {
   position: fixed;
   top: 50px;
   left: 0;
-  width: 200px;
+  width: 226px;
   height: calc(100% - 50px);
+  overflow-y: auto;
 }
 </style>

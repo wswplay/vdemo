@@ -24,9 +24,9 @@ export default {
 .main {
   position: fixed;
   top: 50px;
-  left: 200px;
+  left: 226px;
   height: calc(100% - 50px);
-  width: calc(100% - 200px);
+  width: calc(100% - 226px);
   overflow-x: hidden;
   overflow-y: auto;
 }
