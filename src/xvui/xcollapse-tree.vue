@@ -1,7 +1,7 @@
 <template>
   <el-scrollbar class='xcollapseTree'>
     <el-menu
-      default-active="essay"
+      default-active="0"
       class="el-menu-vertical-demo"
       @open="handleOpen"
       @close="handleClose"
@@ -37,9 +37,24 @@ export default {
 .xcollapseTree {
   text-align: left;
   overflow-x: hidden;
+  /deep/.el-menu-item .el-icon-moon,
+  /deep/.el-submenu__title .el-icon-moon {
+    display: none;
+  }
   /deep/.is-active > .el-submenu__title {
     color: green!important;
     font-size: 16px;
+  }
+  /deep/.is-active.el-menu-item .el-icon-moon-night,
+  /deep/.is-active > .el-submenu__title .el-icon-moon-night {
+    display: none;
+  }
+  /deep/.is-active.el-menu-item .el-icon-moon,
+  /deep/.is-active > .el-submenu__title .el-icon-moon {
+    display: inline-block;
+  }
+  /deep/.is-active > .el-submenu__title i {
+    color: green!important;
   }
   /deep/.el-submenu__title,
   /deep/.el-menu-item {

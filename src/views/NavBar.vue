@@ -1,14 +1,20 @@
 <template>
   <div class="nav-bar gBoxInsetShadow">
-    Demo页面欢迎您！
-    <router-link to="/">首页</router-link>  ||  
-    <router-link to="/about">关于</router-link>
+    <div>{{tips}}{{sloga}}</div>
+    <!-- <router-link to="/">首页</router-link>  ||   -->
+    <!-- <router-link to="/about">关于</router-link> -->
   </div>
 </template>
 
 <script>
 export default {
-  name: 'NavBar'
+  name: 'NavBar',
+  data() {
+    return {
+      tips: '从今往后，你就是后台。',
+      sloga: '一路向前，你就是我们！'
+    }
+  }
 }
 </script>
 

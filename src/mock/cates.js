@@ -75,10 +75,24 @@ export const CateList = [
     ]
   },
   {
-    name: '随笔',
-    path: 'essay',
+    name: '心の驿站',
+    path: 'station',
     meta: {
       icon: 'el-icon-moon-night'
     },
+    children: [
+      {
+        name: '关于文学',
+        path: 'literature',
+      },
+      {
+        name: '关于爱情',
+        path: 'love',
+      },
+      {
+        name: '关于穿越世界的旅行',
+        path: 'travel',
+      },
+    ]
   }
 ]
