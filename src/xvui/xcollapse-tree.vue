@@ -1,14 +1,19 @@
 <template>
   <el-scrollbar class='xcollapseTree'>
     <el-menu
-      default-active="0"
+      :default-active="activeMenu"
       class="el-menu-vertical-demo"
       @open="handleOpen"
       @close="handleClose"
       background-color="#fff"
       text-color="#000"
     >
-      <Xelement v-for="item in list" :key="item.path" :info="item" />
+      <Xelement
+        v-for="item in list"
+        :key="item.path"
+        :info="item"
+        :basePath="item.path"
+      />
     </el-menu>
   </el-scrollbar>
 </template>
@@ -22,12 +27,23 @@ export default {
   data() {
     return {}
   },
+  computed: {
+    activeMenu() {
+      const route = this.$route
+      const { meta, path } = route
+      // if set path, the sidebar will highlight the path you set
+      if (meta.activeMenu) {
+        return meta.activeMenu
+      }
+      return path
+    },
+  },
   methods: {
     handleOpen(key, keyPath) {
-      console.log('open',key, keyPath);
+      // console.log('open',key, keyPath);
     },
     handleClose(key, keyPath) {
-      console.log('close', key, keyPath);
+      // console.log('close', key, keyPath);
     }
   }
 }

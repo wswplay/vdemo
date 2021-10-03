@@ -1,18 +1,18 @@
 <template>
   <div class="nav-bar gBoxInsetShadow">
-    <div>{{tips}}{{sloga}}</div>
-    <!-- <router-link to="/">首页</router-link>  ||   -->
-    <!-- <router-link to="/about">关于</router-link> -->
+    <div class="title" @click="goHome">{{title}}</div>
   </div>
 </template>
 
 <script>
+import { publicMixin } from '@/mixin/index.js';
+
 export default {
   name: 'NavBar',
+  mixins: [ publicMixin ],
   data() {
     return {
-      tips: '从今往后，你就是后台。',
-      sloga: '一路向前，你就是我们！'
+      title: 'JavaScript边城',
     }
   }
 }
@@ -21,7 +21,17 @@ export default {
 <style lang="less" scoped>
 @import "~@/style/variable.less";
 .nav-bar {
-  line-height: 50px;
   // border: 1px dashed @borderColor;
+  .title {
+    line-height: 50px;
+    color: green;
+    // transition: all 0.6s;
+    cursor: pointer;
+    font-size: 18px;
+    // &:hover {
+    //   color: blue;
+    //   font-size: 20px;
+    // }
+  }
 }
 </style>

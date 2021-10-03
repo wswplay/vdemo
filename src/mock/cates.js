@@ -1,51 +1,58 @@
 export const CateList = [
+  // {
+  //   label: 'Hello World',
+  //   name: 'World',
+  //   path: '/hello',
+  // },
   {
-    name: '技术栈',
-    path: 'stack',
+    label: '技术栈',
+    path: '/stack',
+    redirect: '/stack/vuejs/vue/vue2',
     meta: {
       icon: 'el-icon-moon-night'
     },
     children: [
       {
-        name: 'Vue生态',
-        path: 'vues',
+        label: 'Vue.js',
+        path: 'vuejs',
         children: [
           {
-            name: 'Vue',
-            path: 'vuejs',
+            label: 'Vue',
+            path: 'vue',
             children: [
               {
-                name: '2.0',
-                path: 'vue2.0',
+                label: '2.0',
+                path: 'vue2',
+                component: () => import(/* webpackChunkName: "vue2" */ "@/components/Vue2.vue"),
               },
               {
-                name: '3.0',
-                path: 'vue3.0',
+                label: '3.0',
+                path: 'vue3',
               },
             ]
           },
           {
-            name: 'Vue-Router',
+            label: 'Vue-Router',
             path: 'vrouter',
           },
           {
-            name: '数据管理',
+            label: '数据管理',
             path: 'data',
             children: [
               {
-                name: 'Vuex',
+                label: 'Vuex',
                 path: 'vuex',
               },
               {
-                name: '其他',
+                label: '其他',
                 path: 'other',
                 children: [
                   {
-                    name: '混入',
+                    label: '混入',
                     path: 'mixin',
                   },
                   {
-                    name: '依赖注入',
+                    label: '依赖注入',
                     path: 'inject',
                   },
                 ]
@@ -55,44 +62,71 @@ export const CateList = [
         ]
       },
       {
-        name: 'Nodejs',
+        label: 'Nodejs',
         path: 'node',
         children: [
           {
-            name: 'Webpack',
+            label: 'Webpack',
             path: 'webpack', 
           },
           {
-            name: 'Koa',
+            label: 'Koa',
             path: 'koa', 
           }
         ]
       },
       {
-        name: '性能优化',
+        label: '性能优化',
         path: 'performance', 
       }
     ]
   },
   {
-    name: '心の驿站',
-    path: 'station',
+    label: '心驿站',
+    path: '/station',
     meta: {
       icon: 'el-icon-moon-night'
     },
     children: [
       {
-        name: '关于文学',
+        label: '关于文学',
         path: 'literature',
+        component: () => import(/* webpackChunkName: "Literature" */ "@/views/Literature.vue"),
       },
       {
-        name: '关于爱情',
+        label: '关于爱情',
         path: 'love',
       },
       {
-        name: '关于穿越世界的旅行',
+        label: '关于穿越世界的旅行',
         path: 'travel',
       },
     ]
-  }
+  },
+  {
+    label: '金钱盏',
+    path: '/stock',
+    meta: {
+      icon: 'el-icon-moon-night'
+    },
+    children: [
+      {
+        label: '基金',
+        path: 'fund',
+        component: () => import(/* webpackChunkName: "Fund" */ "@/views/Fund.vue"),
+      },
+      {
+        label: 'A股',
+        path: 'rmb',
+      },
+      {
+        label: '美股',
+        path: 'dollar',
+      },
+      {
+        label: '港股',
+        path: 'hkd',
+      },
+    ]
+  },
 ]

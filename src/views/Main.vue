@@ -29,5 +29,7 @@ export default {
   width: calc(100% - 226px);
   overflow-x: hidden;
   overflow-y: auto;
+  padding: 20px;
+  box-sizing: border-box;
 }
 </style>
