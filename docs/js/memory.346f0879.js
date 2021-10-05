@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["memory"],{"5f8a":function(n,t,e){"use strict";e.r(t);var r=function(){var n=this,t=n.$createElement,e=n._self._c||t;return e("div",{staticClass:"memory"},[n._v("内存页面的内容")])},a=[],c={name:"Memory",data:function(){return{}}},o=c,s=(e("fd57"),e("2877")),u=Object(s["a"])(o,r,a,!1,null,"5b6d885e",null);t["default"]=u.exports},"7d70":function(n,t,e){},fd57:function(n,t,e){"use strict";e("7d70")}}]);
-//# sourceMappingURL=memory.346f0879.js.map
