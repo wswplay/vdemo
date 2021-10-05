@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "~@/style/variable.less";
+// @import "~@/style/variable.less";
 .left-bar {
   position: fixed;
   top: 50px;

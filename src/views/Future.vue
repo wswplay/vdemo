@@ -9,7 +9,7 @@ export default {
   name: 'Future',
   data() {
     return {
-      msg: '正在紧张施工 🚧🚧🚧 敬请期待！',
+      msg: '正在紧张施工  🚧🚧🚧  敬请期待！',
     }
   }
 }
@@ -19,6 +19,6 @@ export default {
 .Future {
   width: 100%;
   height: 100%;
-  font-size: 32px;
+  font-size: @fontSize18;
 }
 </style>

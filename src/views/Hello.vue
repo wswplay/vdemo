@@ -23,6 +23,6 @@ export default {
 .Hello {
   width: 100%;
   height: 100%;
-  font-size: 26px;
+  font-size: @fontSize18;
 }
 </style>

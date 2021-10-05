@@ -24,6 +24,6 @@ export default {
 .x404 {
   width: 100%;
   height: 100vh;
-  font-size: 32px;
+  font-size: @fontSize18;
 }
 </style>
