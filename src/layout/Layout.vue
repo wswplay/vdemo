@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import NavBar from "@/views/NavBar.vue";
-import LeftBar from "@/views/LeftBar.vue";
-import Main from "@/views/Main.vue";
+import NavBar from "@/layout/NavBar.vue";
+import LeftBar from "@/layout/LeftBar.vue";
+import Main from "@/layout/Main.vue";
 
 export default {
   name: 'Layout',

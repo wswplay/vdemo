@@ -1,9 +1,9 @@
 export const CateList = [
-  // {
-  //   label: 'Hello World',
-  //   name: 'World',
-  //   path: '/hello',
-  // },
+  {
+    label: 'Hello World',
+    name: 'World',
+    path: '/hello',
+  },
   {
     label: '技术栈',
     path: '/stack',

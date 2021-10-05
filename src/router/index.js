@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Layout from "@/views/Layout.vue";
+import Layout from "@/layout/Layout.vue";
 import Future from "@/views/Future.vue";
 import { CateList } from '@/mock/cates';
 const cateRouters = combCateToRouter(CateList);
@@ -37,6 +37,7 @@ const routes = [
   ...cateRouters,
   {
     path: "/404",
+    name: 'x404',
     component: () => import(/* webpackChunkName: "404" */ "@/views/404.vue"),
   },
   {
