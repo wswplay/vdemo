@@ -7,6 +7,7 @@
       @close="handleClose"
       background-color="#fff"
       text-color="#000"
+      :unique-opened="true"
     >
       <Xelement
         v-for="item in list"
