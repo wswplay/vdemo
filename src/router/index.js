@@ -9,6 +9,11 @@ Vue.use(VueRouter);
 
 const routes = [
   {
+    path: "/login",
+    name: "Login",
+    component: () => import(/* webpackChunkName: "Login" */ "@/views/Login.vue"),
+  },
+  {
     path: "/",
     name: "Layout",
     component: Layout,
@@ -51,6 +56,11 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
+
+router.beforeEach((to, from, next) => {
+  console.log(to.path)
+  next();
+})
 
 export default router;
 // 将类别cate转化为路由router
