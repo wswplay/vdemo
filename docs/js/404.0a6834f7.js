@@ -1,2 +1,2 @@
 (window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["404"],{"8cdb":function(t,n,s){"use strict";s.r(n);var e=function(){var t=this,n=t.$createElement,s=t._self._c||n;return s("div",{staticClass:"x404 centerFlex"},[s("div",{staticClass:"content"},[t._v(t._s(t.msg))]),s("el-button",{attrs:{type:"success",round:""},on:{click:t.goHome}},[t._v(t._s(t.tips))])],1)},c=[],i=s("4624"),a={name:"x404",mixins:[i["a"]],data:function(){return{msg:"呃豁，你需要的信息，被外星人借走了！",tips:"返回首页"}}},o=a,u=(s("f93c"),s("2877")),r=Object(u["a"])(o,e,c,!1,null,"47af8ea6",null);n["default"]=r.exports},d6e0:function(t,n,s){},f93c:function(t,n,s){"use strict";s("d6e0")}}]);
-//# sourceMappingURL=404.bcd630b8.js.map
+//# sourceMappingURL=404.0a6834f7.js.map

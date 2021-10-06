@@ -1,2 +1,2 @@
 (window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["Literature"],{"1b05":function(e,t,n){"use strict";n.r(t);var r=function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",{staticClass:"Literature"},[e._v(" 关于文学，《边城》 ")])},a=[],u={name:"Literature"},i=u,s=n("2877"),l=Object(s["a"])(i,r,a,!1,null,null,null);t["default"]=l.exports}}]);
-//# sourceMappingURL=Literature.ec2a6437.js.map
+//# sourceMappingURL=Literature.85161c2b.js.map

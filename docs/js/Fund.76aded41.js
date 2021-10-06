@@ -1,2 +1,2 @@
 (window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["Fund"],{c209:function(n,e,t){"use strict";t.r(e);var u=function(){var n=this,e=n.$createElement,t=n._self._c||e;return t("div",{staticClass:"Fund"},[n._v("基金")])},s=[],a={name:"Fund"},c=a,l=t("2877"),i=Object(l["a"])(c,u,s,!1,null,null,null);e["default"]=i.exports}}]);
-//# sourceMappingURL=Fund.7e41316d.js.map
+//# sourceMappingURL=Fund.76aded41.js.map
