@@ -3,6 +3,8 @@ import VueRouter from "vue-router";
 import Layout from "@/layout/Layout.vue";
 import Future from "@/views/Future.vue";
 import { CateList } from '@/mock/cates';
+import { getToken } from '@/utils/auth.js';
+
 const cateRouters = combCateToRouter(CateList);
 
 Vue.use(VueRouter);
@@ -58,8 +60,20 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  console.log(to.path)
-  next();
+  const tokenValue = getToken();
+  if(tokenValue) {
+    if(to.path === '/login') {
+      next({path: '/'})
+    } else {
+      next();
+    }
+  } else {
+    if(to.path === '/login') {
+      next();
+    } else {
+      next(`/login?redirect=${to.path}`);
+    }
+  }
 })
 
 export default router;

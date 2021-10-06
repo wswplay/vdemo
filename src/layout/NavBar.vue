@@ -1,11 +1,16 @@
 <template>
   <div class="nav-bar gBoxInsetShadow">
     <div class="title" @click="goHome">{{title}}</div>
+    <div class="log-out">
+      <el-button type="danger" size="mini" circle icon="el-icon-switch-button"
+        @click="logOut"></el-button>
+    </div>
   </div>
 </template>
 
 <script>
 import { publicMixin } from '@/mixin/index.js';
+import { removeToken } from '@/utils/auth.js';
 
 export default {
   name: 'NavBar',
@@ -14,14 +19,19 @@ export default {
     return {
       title: 'JavaScript边城',
     }
+  },
+  methods: {
+    logOut() {
+      removeToken();
+      this.$router.push(`/login?redirect=${this.$route.fullPath}`);
+    }
   }
 }
 </script>
 
 <style lang="less" scoped>
-@import "~@/style/variable.less";
 .nav-bar {
-  // border: 1px dashed @borderColor;
+  position: relative;
   .title {
     line-height: 50px;
     color: green;
@@ -32,6 +42,11 @@ export default {
     //   color: blue;
     //   font-size: 20px;
     // }
+  }
+  .log-out {
+    position: absolute;
+    top: 10px;
+    right: 10px;
   }
 }
 </style>

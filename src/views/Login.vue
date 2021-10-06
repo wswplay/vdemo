@@ -19,7 +19,7 @@
               { type: 'string', message: '年龄必须为字符串'}
             ]"
           >
-            <el-input v-model="loginData.name"></el-input>
+            <el-input v-model="loginData.name" clearable placeholder="admin可用"></el-input>
           </el-form-item>
           <el-form-item
             :label="labelText.passWord"
@@ -29,11 +29,17 @@
               { type: 'string', message: '密码必须为字符串'}
             ]"
           >
-            <el-input type="password" v-model="loginData.passWord"></el-input>
+            <el-input
+              type="password"
+              v-model="loginData.passWord"
+              clearable
+              @keyup.enter.native="submitForm"
+              placeholder="admin可用"
+            ></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="submitForm(formRef)">提交</el-button>
-            <el-button @click="resetForm(formRef)">重置</el-button>
+            <el-button size="small" type="primary" @click="submitForm">提交</el-button>
+            <el-button size="small" @click="resetForm(formRef)">重置</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -42,11 +48,25 @@
 </template>
 
 <script>
+import { setToken } from '@/utils/auth.js';
+
 export default {
   name: 'Login',
   data() {
     return {
       welcomeText: '【边城】欢迎你！',
+      roleObj: {
+        admin: 'admin',
+        biancheng: 'admin',
+        nanzhi: 'boss',
+        xiao: 'hero'
+      },
+      passWordObj: {
+        admin: 'admin',
+        biancheng: '000',
+        nanzhi: '123',
+        xiao: '666'
+      },
       formRef: 'loginFormRef',
       loginData: {
         name: '',
@@ -55,19 +75,41 @@ export default {
       labelText: {
         name: '用户名',
         passWord: '密码'
-      }
+      },
+      redirect: null,
+    }
+  },
+  watch: {
+    $route: {
+      handler: function(route) {
+        this.redirect = route.query && route.query.redirect
+      },
+      immediate: true
     }
   },
   methods: {
-    submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
+    // 提交表单
+    submitForm() {
+      this.$refs[this.formRef].validate((valid) => {
         if(valid) {
-          console.log('通过校验')
+          if(this.checkPassWord()) {
+            this.$message({message: '登录成功', type: 'success'});
+            setToken(`bian_cheng_${this.roleObj[this.loginData.name]}`);
+            this.$router.push( this.redirect || '/');
+          } else {
+            this.$message.error('用户名或者密码错误，请重试');
+          }
         } else {
-          console.log('请完善字段')
+          this.$message.error('请完善字段');
         }
       })
     },
+    checkPassWord() {
+      const { name, passWord } = this.loginData;
+      if(passWord === this.passWordObj[name]) return true;
+      return false;
+    },
+    // 重置表单
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
