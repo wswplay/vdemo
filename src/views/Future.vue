@@ -1,12 +1,13 @@
 <template>
   <div class="Future centerFlex">
-    <div class="content">{{msg}}</div>
+    <div class="content">{{name}}，{{msg}}</div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Future',
+  props: ['name'],
   data() {
     return {
       msg: '正在紧张施工  🚧🚧🚧  敬请期待！',

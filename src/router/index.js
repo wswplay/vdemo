@@ -98,7 +98,11 @@ export function combCateToRouter(cates) {
     if(/^\//.test(item.path)) {
       item.component = Layout;
     } else {
-      if(!item.component) item.component = Future;
+      if(!item.component) {
+        item.component = Future;
+        item.isWaiting = true;
+        item.props = route => ({ name: route.query.name });
+      }
     }
     if(!item.name) item.name = combRouterName(item.path);
     // 递归执行

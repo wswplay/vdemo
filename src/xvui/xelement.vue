@@ -1,7 +1,7 @@
 <template>
   <div class='xcollapse'>
     <template v-if="!info.children">
-      <router-link :to="basePath">
+      <router-link :to="info.isWaiting?`${basePath}?name=${info.label}`:basePath">
         <el-menu-item :index="basePath">
           <template slot="title">
             <i v-if="info.meta && info.meta.icon" :class="iconObj.moon"></i>

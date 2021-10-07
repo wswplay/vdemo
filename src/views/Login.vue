@@ -54,7 +54,7 @@ export default {
   name: 'Login',
   data() {
     return {
-      welcomeText: '【边城】欢迎你！',
+      welcomeText: '【JavaScript边城】欢迎你！',
       passWordObj: {
         admin: 'admin',
         biancheng: '000',
@@ -90,6 +90,7 @@ export default {
     ...mapMutations([
       'setRoles',
       'setToken',
+      'setUserInfo'
     ]),
     // 提交表单
     submitForm() {
@@ -99,6 +100,7 @@ export default {
             this.$message({message: '登录成功', type: 'success'});
             this.setToken(`bian_cheng_${this.roleObj[this.loginData.name]}`);
             this.setRoles([this.roleObj[this.loginData.name]]);
+            this.setUserInfo(this.loginData);
             this.$router.push(this.redirect || '/');
           } else {
             this.$message.error('用户名或者密码错误，请重试');

@@ -15,7 +15,11 @@ export default new Vuex.Store({
     },
     token: '',
     cateList: [],
-    roles: []
+    roles: [],
+    useInfo: {
+      name: '',
+      passWord: ''
+    },
   },
   mutations: {
     setCateList(state, data) {
@@ -28,7 +32,10 @@ export default new Vuex.Store({
     setToken(state, data) {
       state.token = data;
       setToken(data);
-    }
+    },
+    setUserInfo(state, data) {
+      state.useInfo = data;
+    },
   },
   actions: {
     logOut({ commit, state }) {

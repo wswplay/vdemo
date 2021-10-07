@@ -1,8 +1,9 @@
 <template>
   <div class="nav-bar gBoxInsetShadow">
     <div class="title"><span @click="goHome">{{title}}</span></div>
-    <div class="log-out">
-      <el-button type="danger" size="mini" circle icon="el-icon-switch-button"
+    <div class="log-out" >
+      <span>Hello，{{useInfo.name||'请登录'}}</span>
+      <el-button title="登出" type="danger" size="mini" circle icon="el-icon-switch-button"
         @click="exitOut"></el-button>
     </div>
   </div>
@@ -10,7 +11,7 @@
 
 <script>
 import { publicMixin } from '@/mixin/index.js';
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 export default {
   name: 'NavBar',
@@ -19,6 +20,11 @@ export default {
     return {
       title: 'JavaScript边城',
     }
+  },
+  computed: {
+    ...mapState([
+      'useInfo'
+    ])
   },
   methods: {
     ...mapActions([
@@ -51,7 +57,12 @@ export default {
   .log-out {
     position: absolute;
     top: 10px;
-    right: 10px;
+    right: 20px;
+    span {
+      font-size: 12px;
+      padding-right: 5px;
+      font-weight: bolder;
+    }
   }
 }
 </style>
