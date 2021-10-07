@@ -1,12 +1,13 @@
 <template>
   <div class="left-bar gBoxInsetShadow">
-    <XcollapseTree :list="cateArr" />
+    <XcollapseTree :list="cateList" />
   </div>
 </template>
 
 <script>
-import { CateList } from '@/mock/cates'
-import XcollapseTree from '@/xvui/xcollapse-tree'
+import { CateList } from '@/mock/cates';
+import XcollapseTree from '@/xvui/xcollapse-tree';
+import { mapState } from 'vuex';
 
 export default {
   name: 'LeftBar',
@@ -15,6 +16,11 @@ export default {
     return {
       cateArr: []
     }
+  },
+  computed: {
+    ...mapState([
+      'cateList'
+    ])
   },
   beforeCreate() {
   },

@@ -1,16 +1,16 @@
 <template>
   <div class="nav-bar gBoxInsetShadow">
-    <div class="title" @click="goHome">{{title}}</div>
+    <div class="title"><span @click="goHome">{{title}}</span></div>
     <div class="log-out">
       <el-button type="danger" size="mini" circle icon="el-icon-switch-button"
-        @click="logOut"></el-button>
+        @click="exitOut"></el-button>
     </div>
   </div>
 </template>
 
 <script>
 import { publicMixin } from '@/mixin/index.js';
-import { removeToken } from '@/utils/auth.js';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'NavBar',
@@ -21,8 +21,11 @@ export default {
     }
   },
   methods: {
-    logOut() {
-      removeToken();
+    ...mapActions([
+      'logOut'
+    ]),
+    async exitOut() {
+      await this.logOut();
       this.$router.push(`/login?redirect=${this.$route.fullPath}`);
     }
   }
@@ -36,8 +39,10 @@ export default {
     line-height: 50px;
     color: green;
     // transition: all 0.6s;
-    cursor: pointer;
     font-size: 18px;
+    span {
+      cursor: pointer;
+    }
     // &:hover {
     //   color: blue;
     //   font-size: 20px;

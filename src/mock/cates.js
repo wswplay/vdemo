@@ -3,6 +3,9 @@ export const CateList = [
     label: 'Hello World',
     name: 'World',
     path: '/hello',
+    meta: {
+      roles: ['admin', 'boss']
+    },
   },
   {
     label: '技术栈',
@@ -85,21 +88,31 @@ export const CateList = [
     label: '心驿站',
     path: '/station',
     meta: {
-      icon: 'el-icon-moon-night'
+      icon: 'el-icon-moon-night',
+      roles: ['admin', 'hero']
     },
     children: [
       {
         label: '关于文学',
         path: 'literature',
+        meta: {
+          roles: ['admin', 'hero']
+        },
         component: () => import(/* webpackChunkName: "Literature" */ "@/views/Literature.vue"),
       },
       {
         label: '关于爱情',
         path: 'love',
+        meta: {
+          roles: ['admin', 'hero']
+        },
       },
       {
         label: '关于穿越世界的旅行',
         path: 'travel',
+        meta: {
+          roles: ['admin', 'boss']
+        },
       },
     ]
   },
@@ -107,25 +120,38 @@ export const CateList = [
     label: '金钱盏',
     path: '/stock',
     meta: {
-      icon: 'el-icon-moon-night'
+      icon: 'el-icon-moon-night',
+      roles: ['admin', 'boss'],
     },
     children: [
       {
         label: '基金',
         path: 'fund',
+        meta: {
+          roles: ['admin', 'boss']
+        },
         component: () => import(/* webpackChunkName: "Fund" */ "@/views/Fund.vue"),
       },
       {
         label: 'A股',
         path: 'rmb',
+        meta: {
+          roles: ['admin', 'boss']
+        },
       },
       {
         label: '美股',
         path: 'dollar',
+        meta: {
+          roles: ['admin', 'hero']
+        },
       },
       {
         label: '港股',
         path: 'hkd',
+        meta: {
+          roles: ['admin', 'boss']
+        },
       },
     ]
   },

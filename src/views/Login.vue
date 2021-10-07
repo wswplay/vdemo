@@ -49,18 +49,13 @@
 
 <script>
 import { setToken } from '@/utils/auth.js';
+import { mapState, mapMutations } from 'vuex';
 
 export default {
   name: 'Login',
   data() {
     return {
       welcomeText: '【边城】欢迎你！',
-      roleObj: {
-        admin: 'admin',
-        biancheng: 'admin',
-        nanzhi: 'boss',
-        xiao: 'hero'
-      },
       passWordObj: {
         admin: 'admin',
         biancheng: '000',
@@ -79,6 +74,11 @@ export default {
       redirect: null,
     }
   },
+  computed : {
+    ...mapState([
+      'roleObj',
+    ])
+  },
   watch: {
     $route: {
       handler: function(route) {
@@ -88,6 +88,9 @@ export default {
     }
   },
   methods: {
+    ...mapMutations([
+      'setRoles'
+    ]),
     // 提交表单
     submitForm() {
       this.$refs[this.formRef].validate((valid) => {
@@ -95,7 +98,8 @@ export default {
           if(this.checkPassWord()) {
             this.$message({message: '登录成功', type: 'success'});
             setToken(`bian_cheng_${this.roleObj[this.loginData.name]}`);
-            this.$router.push( this.redirect || '/');
+            this.setRoles([this.roleObj[this.loginData.name]]);
+            this.$router.push(this.redirect || '/');
           } else {
             this.$message.error('用户名或者密码错误，请重试');
           }
