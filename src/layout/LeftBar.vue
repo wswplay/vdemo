@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import { CateList } from '@/mock/cates';
 import XcollapseTree from '@/xvui/xcollapse-tree';
 import { mapState } from 'vuex';
 
@@ -19,17 +18,9 @@ export default {
   },
   computed: {
     ...mapState([
-      'cateList'
+      'cateList',
     ])
   },
-  beforeCreate() {
-  },
-  created() {
-    this.cateArr = CateList
-  },
-  mounted() {
-    
-  }
 }
 </script>
 

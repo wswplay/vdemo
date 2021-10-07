@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import { resetRouter, addRolesRouter } from '@/router';
-import { removeToken } from '@/utils/auth.js';
+import { setToken, removeToken } from '@/utils/auth.js';
 
 Vue.use(Vuex);
 
@@ -13,6 +13,7 @@ export default new Vuex.Store({
       nanzhi: 'boss',
       xiao: 'hero'
     },
+    token: '',
     cateList: [],
     roles: []
   },
@@ -24,6 +25,10 @@ export default new Vuex.Store({
       state.roles = data;
       if(data.length) addRolesRouter(data);
     },
+    setToken(state, data) {
+      state.token = data;
+      setToken(data);
+    }
   },
   actions: {
     logOut({ commit, state }) {

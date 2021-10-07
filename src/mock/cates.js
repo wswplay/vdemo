@@ -89,7 +89,7 @@ export const CateList = [
     path: '/station',
     meta: {
       icon: 'el-icon-moon-night',
-      roles: ['admin', 'hero']
+      roles: ['admin', 'hero', 'boss']
     },
     children: [
       {

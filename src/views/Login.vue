@@ -48,7 +48,6 @@
 </template>
 
 <script>
-import { setToken } from '@/utils/auth.js';
 import { mapState, mapMutations } from 'vuex';
 
 export default {
@@ -89,7 +88,8 @@ export default {
   },
   methods: {
     ...mapMutations([
-      'setRoles'
+      'setRoles',
+      'setToken',
     ]),
     // 提交表单
     submitForm() {
@@ -97,14 +97,14 @@ export default {
         if(valid) {
           if(this.checkPassWord()) {
             this.$message({message: '登录成功', type: 'success'});
-            setToken(`bian_cheng_${this.roleObj[this.loginData.name]}`);
+            this.setToken(`bian_cheng_${this.roleObj[this.loginData.name]}`);
             this.setRoles([this.roleObj[this.loginData.name]]);
             this.$router.push(this.redirect || '/');
           } else {
             this.$message.error('用户名或者密码错误，请重试');
           }
         } else {
-          this.$message.error('请完善字段');
+          this.$message.error('请完善相关字段');
         }
       })
     },

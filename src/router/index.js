@@ -6,9 +6,6 @@ import Future from "@/views/Future.vue";
 import { CateList } from '@/mock/cates';
 import { getToken } from '@/utils/auth.js';
 
-// const cateRouters = combCateToRouter(CateList);
-// const whiteList = ['/login'];
-
 Vue.use(VueRouter);
 // 通用路由
 const commRoutes = [
@@ -33,9 +30,6 @@ const commRoutes = [
   {
     path: "/about",
     name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ "@/views/About.vue"),
   },
   {
@@ -71,21 +65,7 @@ router.beforeEach((to, from, next) => {
     if(to.path === '/login') {
       next({path: '/'})
     } else {
-      next()
-      // let roles = Store.state.roles;
-      // if(roles.length) {
-      //   console.log('11111111', from.path, to.path, roles)
-      //   next()
-      // } else {
-      //   console.log('222222222', from.path, to.path, roles)
-      //   roles = tokenValue.split('_').splice(2);
-      //   let curRouter = dynamicAddRouter(roles);
-      //   router.addRoutes(curRouter);
-      //   router.addRoutes(errRouters);
-      //   Store.commit('setRoles', roles);
-      //   Store.commit('setCateList', curRouter);
-      //   next({ ...to, replace: true })
-      // }
+      next();
     }
   } else {
     if(to.path === '/login') {
@@ -98,7 +78,7 @@ router.beforeEach((to, from, next) => {
 // 重置路由数据
 export function resetRouter() {
   const newRouter = createRouter();
-  router.matcher = newRouter.matcher; // reset router
+  router.matcher = newRouter.matcher;
 }
 // 添加角色权限路由
 export function addRolesRouter(roles) {
@@ -110,7 +90,7 @@ export function addRolesRouter(roles) {
 
 export default router;
 
-
+// 处理路由的工具函数
 // 将类别cate转化为路由router
 export function combCateToRouter(cates) {
   let routerList = cates.slice();
