@@ -117,7 +117,7 @@ export const CateList = [
     ]
   },
   {
-    label: '金钱盏',
+    label: '金银盏',
     path: '/stock',
     meta: {
       icon: 'el-icon-moon-night',
