@@ -19,7 +19,12 @@
               { type: 'string', message: '年龄必须为字符串'}
             ]"
           >
-            <el-input v-model="loginData.name" clearable placeholder="admin可用"></el-input>
+            <el-input
+              v-elFocus
+              v-model="loginData.name"
+              clearable
+              placeholder="admin可用"
+            ></el-input>
           </el-form-item>
           <el-form-item
             :label="labelText.passWord"

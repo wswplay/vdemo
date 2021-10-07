@@ -1,8 +1,8 @@
 <template>
   <div class="nav-bar gBoxInsetShadow">
     <div class="title"><span @click="goHome">{{title}}</span></div>
-    <div class="log-out" >
-      <span>Hello，{{useInfo.name||'请登录'}}</span>
+    <div class="log-out centerFlex">
+      <div class="user-info">Hello，{{useInfo.name||'请登录'}}</div>
       <el-button title="登出" type="danger" size="mini" circle icon="el-icon-switch-button"
         @click="exitOut"></el-button>
     </div>
@@ -58,7 +58,7 @@ export default {
     position: absolute;
     top: 10px;
     right: 20px;
-    span {
+    .user-info {
       font-size: 12px;
       padding-right: 5px;
       font-weight: bolder;
