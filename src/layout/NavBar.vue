@@ -1,6 +1,6 @@
 <template>
   <div class="nav-bar gBoxInsetShadow">
-    <div class="title"><span @click="goHome">{{title}}</span></div>
+    <div class="title"><span @click="goHome">{{$t('xlang.appTitle')}}</span></div>
     <div class="log-out centerFlex">
       <div class="user-info">Hello，{{useInfo.name||'请登录'}}</div>
       <el-button title="登出" type="danger" size="mini" circle icon="el-icon-switch-button"
@@ -17,9 +17,7 @@ export default {
   name: 'NavBar',
   mixins: [ publicMixin ],
   data() {
-    return {
-      title: 'JavaScript边城',
-    }
+    return {}
   },
   computed: {
     ...mapState([

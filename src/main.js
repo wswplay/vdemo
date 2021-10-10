@@ -8,6 +8,8 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 // 引入全局指令集
 import GlobalDirectives from '@/directive/global.js';
+// 引入语言国际化
+import i18n from '@/lang/index.js';
 
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
@@ -19,5 +21,6 @@ GlobalDirectives.forEach(item => {
 new Vue({
   router,
   store,
+  i18n,
   render: (h) => h(App),
 }).$mount("#app");
