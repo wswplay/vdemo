@@ -2,16 +2,19 @@ import Vue from 'vue';
 import VueI18n from 'vue-i18n';
 import cn from './cn.js';
 import en from './en.js';
+import langTypes from '@/lang/types.js';
 
 Vue.use(VueI18n);
 
 const messages = {
-  cn: {
+  // 中文
+  [langTypes.cn]: {
     xlang: {
       ...cn,
     }
   },
-  en: {
+  // 英文
+  [langTypes.en]: {
     xlang: {
       ...en,
     }
@@ -19,7 +22,7 @@ const messages = {
 }
 
 const i18n = new VueI18n({
-  locale: 'en',
+  locale: langTypes.en,
   messages,
 })
 

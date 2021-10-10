@@ -1,8 +1,9 @@
 <template>
   <div class="nav-bar gBoxInsetShadow">
-    <div class="title"><span @click="goHome">{{$t('xlang.appTitle')}}</span></div>
+    <div class="lang-switch" @click="switchLang">{{langText}}</div>
+    <div class="app-title"><span @click="goHome">{{$t('xlang.appTitle')}}</span></div>
     <div class="log-out centerFlex">
-      <div class="user-info">Hello，{{useInfo.name||'请登录'}}</div>
+      <div class="user-info">Hello，{{useInfo.name||$t('xlang.pleaseLogin')}}</div>
       <el-button title="登出" type="danger" size="mini" circle icon="el-icon-switch-button"
         @click="exitOut"></el-button>
     </div>
@@ -12,6 +13,7 @@
 <script>
 import { publicMixin } from '@/mixin/index.js';
 import { mapActions, mapState } from 'vuex';
+import langTypes from '@/lang/types.js';
 
 export default {
   name: 'NavBar',
@@ -22,7 +24,11 @@ export default {
   computed: {
     ...mapState([
       'useInfo'
-    ])
+    ]),
+    langText() {
+      const langObj = { [langTypes.cn]: 'en', [langTypes.en]: '中' };
+      return langObj[this.$i18n.locale];
+    }
   },
   methods: {
     ...mapActions([
@@ -31,6 +37,14 @@ export default {
     async exitOut() {
       await this.logOut();
       this.$router.push(`/login?redirect=${this.$route.fullPath}`);
+    },
+    // 语言切换
+    switchLang() {
+      if(this.$i18n.locale === langTypes.en) {
+        this.$i18n.locale = langTypes.cn;
+      } else {
+        this.$i18n.locale = langTypes.en;
+      }
     }
   }
 }
@@ -38,9 +52,17 @@ export default {
 
 <style lang="less" scoped>
 .nav-bar {
-  position: relative;
-  .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  padding: 0 15px 0 10px;
+  .lang-switch {
+    cursor: pointer;
+    padding: 0 5px;
     line-height: 50px;
+  }
+  .app-title {
     color: green;
     // transition: all 0.6s;
     font-size: 18px;
@@ -53,9 +75,6 @@ export default {
     // }
   }
   .log-out {
-    position: absolute;
-    top: 10px;
-    right: 20px;
     .user-info {
       font-size: 12px;
       padding-right: 5px;
