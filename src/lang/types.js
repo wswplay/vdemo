@@ -1,8 +1,8 @@
-const typeList = [
-  'cn', // 中文
-  'en', // 英文
-];
+import path from 'path';
+
+const pathNames = require.context('./modules', false, /.js$/).keys();
+const fileNames = pathNames.map(item => path.basename(item, '.js'));
 let langTypes = {};
-typeList.forEach(item => langTypes[item] = item);
+fileNames.forEach(item => langTypes[item] = item);
 
 export default langTypes;

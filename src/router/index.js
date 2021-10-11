@@ -4,7 +4,7 @@ import Store from '@/store/index.js'
 import Layout from "@/layout/Layout.vue";
 import Future from "@/views/Future.vue";
 import { CateList } from '@/mock/cates';
-import { getToken } from '@/utils/auth.js';
+import { getToken, removeToken } from '@/utils/auth.js';
 
 Vue.use(VueRouter);
 // 通用路由
@@ -65,7 +65,12 @@ router.beforeEach((to, from, next) => {
     if(to.path === '/login') {
       next({path: '/'})
     } else {
-      next();
+      if(!Store.state.roles.length) {
+        removeToken();
+        next('/login');
+      } else {
+        next();
+      }
     }
   } else {
     if(to.path === '/login') {

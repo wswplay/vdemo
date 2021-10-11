@@ -40,7 +40,7 @@ export default {
     },
     // 语言切换
     switchLang() {
-      if(this.$i18n.locale === langTypes.en) {
+      if(this.$i18n.locale !== langTypes.cn) {
         this.$i18n.locale = langTypes.cn;
       } else {
         this.$i18n.locale = langTypes.en;
