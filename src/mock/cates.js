@@ -6,6 +6,13 @@ export const CateList = [
     meta: {
       roles: ['admin', 'boss']
     },
+    isExist: true,
+  },
+  {
+    label: '电商',
+    name: 'Ebusiness',
+    path: '/ebusiness',
+    isExist: true,
   },
   {
     label: '技术栈',

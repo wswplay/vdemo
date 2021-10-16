@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Store from '@/store/index.js'
 import Layout from "@/layout/Layout.vue";
+import Index from "@/views/Index.vue";
 import Future from "@/views/Future.vue";
 import { CateList } from '@/mock/cates';
 import { getToken, removeToken } from '@/utils/auth.js';
@@ -25,6 +26,11 @@ const commRoutes = [
         name: "Hello",
         component: () => import(/* webpackChunkName: "Hello" */ "@/views/Hello.vue"),
       },
+      {
+        path: 'ebusiness',
+        name: 'Ebusiness',
+        component: () => import(/* webpackChunkName: "Ebusiness" */ "@/views/Ebusiness.vue"),
+      }
     ]
   },
   {
@@ -101,12 +107,16 @@ export function combCateToRouter(cates) {
   let routerList = cates.slice();
   routerList.forEach(item => {
     if(/^\//.test(item.path)) {
-      item.component = Layout;
+      if(!item.isExist && !item.component) item.component = Layout;
     } else {
-      if(!item.component) {
-        item.component = Future;
-        item.isWaiting = true;
-        item.props = route => ({ name: route.query.name });
+      if(item.children) {
+        if(!item.component) item.component = Index;
+      } else {
+        if(!item.component) {
+          item.component = Future;
+          item.isWaiting = true;
+          item.props = route => ({ name: route.query.name });
+        }
       }
     }
     if(!item.name) item.name = combRouterName(item.path);
