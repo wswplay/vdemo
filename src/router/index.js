@@ -19,7 +19,7 @@ const commRoutes = [
     path: "/",
     name: "Layout",
     component: Layout,
-    redirect: '/hello',
+    redirect: '/ebusiness',
     children: [
       {
         path: "hello",
@@ -29,7 +29,7 @@ const commRoutes = [
       {
         path: 'ebusiness',
         name: 'Ebusiness',
-        component: () => import(/* webpackChunkName: "Ebusiness" */ "@/views/Ebusiness.vue"),
+        component: () => import(/* webpackChunkName: "Ebusiness" */ "@/views/Ebusiness/Ebusiness.vue"),
       }
     ]
   },
