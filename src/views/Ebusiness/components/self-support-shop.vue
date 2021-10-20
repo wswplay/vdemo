@@ -235,6 +235,7 @@ export default {
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
+      text-align: left;
     }
     .layer-list-item-promotion-text-wrapper {
       font-size: 12px;

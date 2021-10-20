@@ -10,7 +10,7 @@ export const CateList = [
   },
   {
     label: '电商',
-    name: 'Ebusiness',
+    name: 'Shop',
     path: '/ebusiness',
     isExist: true,
   },
