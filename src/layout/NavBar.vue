@@ -2,7 +2,7 @@
   <div class="nav-bar gBoxInsetShadow">
     <div class="lang-switch" @click="switchLang">{{langText}}</div>
     <div class="app-title"><span @click="goHome">{{$t('xlang.appTitle')}}</span></div>
-    <div class="log-out centerFlex">
+    <div class="log-out">
       <div class="user-info">Hello，{{useInfo.name||$t('xlang.pleaseLogin')}}</div>
       <el-button title="登出" type="danger" size="mini" circle icon="el-icon-switch-button"
         @click="exitOut"></el-button>
@@ -58,11 +58,15 @@ export default {
   height: 50px;
   padding: 0 15px 0 10px;
   .lang-switch {
+    flex: 1;
+    text-align: left;
     cursor: pointer;
     padding: 0 5px;
     line-height: 50px;
   }
   .app-title {
+    flex: 1;
+    text-align: center;
     color: green;
     // transition: all 0.6s;
     font-size: 18px;
@@ -75,6 +79,11 @@ export default {
     // }
   }
   .log-out {
+    flex: 1;
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
     .user-info {
       font-size: 12px;
       padding-right: 5px;
