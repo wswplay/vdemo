@@ -4,7 +4,8 @@ export const goodsList = [
     grade: "G1",
     goods: [
       { id: "g1", stock: "5", name: "路虎", salePrice: "6.20", },
-      { id: "g2", stock: "5", name: "猎豹", salePrice: "6.20", },
+      { id: "g2", stock: "5", name: "猎豹", salePrice: "8.20", },
+      // { id: "g3", stock: "5", name: "发现者", salePrice: "16.20", },
     ],
   },
   {
