@@ -84,10 +84,33 @@ export default {
       goodsWrapperScrollAuto: false,
       allGoodsData: shopsData.goodsList,
       cartData: shopsData.cartGoods,
+      gradeHeights: [],
     };
   },
+  mounted() {
+    this.init();
+  },
   methods: {
-    goToGrade (index) {
+    async init () {
+      this.currentIndex = 0;
+      let goodsDataRes = shopsData.goodsList;
+      setTimeout(() => {
+        let gradeHeights = [];
+        let _height = 0;
+        for (let i = 0; i < goodsDataRes.length; i++) {
+          _height = _height + this.$refs['grade' + i][0].offsetHeight;
+          gradeHeights.push({
+            grade: i + 1,
+            height: _height
+          });
+        }
+        this.gradeHeights = gradeHeights;
+        this.clientHeight = document.body.offsetHeight;
+        this.goodsListHeight = this.gradeHeights[this.gradeHeights.length - 1].height;
+        console.log('gradeHeights', gradeHeights)
+      }, 500);
+    },
+    goToGrade(index) {
       let el = document.getElementById('shopRightWrapper');
       this.goodsWrapperScrollAuto = true;
       if (index === 0) {
@@ -180,9 +203,12 @@ export default {
       position:relative;
       width: 100%;
       box-sizing: border-box;
-      padding-bottom: 110px;
+      padding-bottom: 80px;
       -webkit-overflow-scrolling: touch;
       overflow: auto;
+      &::-webkit-scrollbar {
+        width: 0;
+      }
     }
     .shop-right-wrapper.scroll-auto{
       -webkit-overflow-scrolling: auto !important;
