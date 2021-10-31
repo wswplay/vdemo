@@ -3,7 +3,7 @@ export const goodsList = [
     gradeName: "特层",
     grade: "G0",
     goods: [
-      { id: "maotai", stock: "1", name: "茅台", salePrice: "6666666+E", },
+      { id: "maotai", stock: "1", name: "茅台", salePrice: "999", },
     ],
   },
   {
@@ -41,8 +41,7 @@ export const goodsList = [
   },
 ];
 
-export const cartGoods = {
-  'g1_G1': {
-    num: 1
-  }
-};
+goodsList.forEach(item => {
+  let tempGoods = item.goods;
+  tempGoods.forEach(sitem => sitem.grade = item.grade );
+})

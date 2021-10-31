@@ -4,6 +4,7 @@
     <SelfSupportShop
       @cartAdd="cartAdd"
       @cartSub="cartSub"
+      @calcCartData="calcCartData"
     ></SelfSupportShop>
     <!--购物车-->
     <div class="shop-cart" :class="{active: activeShopCart}" v-if="cartInfo.totalNum">
@@ -49,8 +50,8 @@ export default {
     return {
       activeShopCart: false,
       cartInfo: {
-        totalNum: 10,
-        cartShowPrice: 10.24,
+        totalNum: 0,
+        cartShowPrice: 0,
       },
       canSubmit: true,
     }
@@ -85,6 +86,17 @@ export default {
       }
       this.$refs.cart.onCartSub(goods);
     },
+    // 计算购物车
+    calcCartData(cartObj) {
+      let tempNum = 0, tempPrice = 0;
+      for(let key in cartObj) {
+        let tempItem = cartObj[key];
+        tempNum += tempItem.num;
+        tempPrice += tempItem.num * tempItem.price;
+      }
+      this.cartInfo.totalNum = tempNum;
+      this.cartInfo.cartShowPrice = tempPrice.toFixed(2);
+    }
   }
 }
 </script>

@@ -37,11 +37,11 @@
                       <div class="layer-list-item-pirce-shop" v-else>¥{{item.salePrice}}</div>
                     </div>
                     <div class="layer-list-item-control-btn-wrapper">
-                      <template v-if="cartData && cartData[item.id+'_'+gitem.grade] && cartData[item.id+'_'+gitem.grade].num>=1">
+                      <template v-if="cartData && cartData[gitem.grade+'_'+item.id] && cartData[gitem.grade+'_'+item.id].num>=1">
                         <div class="sub-btn" @click="cartSub(item)">
                           <i class="iconfont ic-ic_subtracting"></i>
                         </div>
-                        <div class="layer-list-item-amount">{{cartData[item.id+'_'+gitem.grade].num}}</div>
+                        <div class="layer-list-item-amount">{{cartData[gitem.grade+'_'+item.id].num}}</div>
                         <div class="add-btn" @click="cartAdd($event, item)">
                           <i class="iconfont ic-ic_add"></i>
                         </div>
@@ -83,7 +83,7 @@ export default {
       currentIndex: 0,
       goodsWrapperScrollAuto: false,
       allGoodsData: shopsData.goodsList,
-      cartData: shopsData.cartGoods,
+      cartData: {},
       gradeHeights: [],
     };
   },
@@ -107,7 +107,6 @@ export default {
         this.gradeHeights = gradeHeights;
         this.clientHeight = document.body.offsetHeight;
         this.goodsListHeight = this.gradeHeights[this.gradeHeights.length - 1].height;
-        console.log('gradeHeights', gradeHeights)
       }, 500);
     },
     goToGrade(index) {
@@ -123,10 +122,26 @@ export default {
       }, 200);
     },
     cartAdd (event, goods) {
+      this.setCartData(goods, true);
       this.$emit('cartAdd', event, goods);
     },
     cartSub (goods) {
-      this.$emit('cartSub', goods);
+      this.setCartData(goods, false);
+      // this.$emit('cartSub', goods);
+    },
+    setCartData(goods, isAdd) {
+      const idStr = `${goods.grade}_${goods.id}`;
+      let tempObj = this.cartData[idStr];
+      if(isAdd) {
+        if(tempObj) {
+          tempObj.num++;
+        } else {
+          this.$set(this.cartData, idStr, { num: 1, price: parseFloat(goods.salePrice) });
+        }
+      } else {
+        if(tempObj.num >= 1) tempObj.num--;
+      }
+      this.$emit('calcCartData', this.cartData);
     },
     onGoodsWrapperScroll (e) {
       let scrollHeight = e.target.scrollTop;
