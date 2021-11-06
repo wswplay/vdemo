@@ -14,3 +14,10 @@ a:active {
   justify-content: center;
   align-items: center;
 }
+// 解决margin塌陷
+.MarginCollapse {
+  &::before {
+    content: "";
+    display: inline-block;
+  }
+}

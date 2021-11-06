@@ -162,4 +162,18 @@ export const CateList = [
       },
     ]
   },
+  {
+    label: 'Css样式',
+    path: '/css',
+    meta: {
+      icon: 'el-icon-moon-night'
+    },
+    children: [
+      {
+        label: 'Margin塌陷',
+        path: 'margin',
+        component: () => import(/* webpackChunkName: "Margin" */ "@/views/Css/Margin.vue"),
+      },
+    ]
+  },
 ]
