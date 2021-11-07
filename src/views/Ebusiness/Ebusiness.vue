@@ -3,8 +3,6 @@
     <!--商品列表组件-->
     <SelfSupportShop
       @cartAdd="cartAdd"
-      @cartSub="cartSub"
-      @calcCartData="calcCartData"
     ></SelfSupportShop>
     <!--购物车-->
     <div class="shop-cart" :class="{active: activeShopCart}" v-if="cartInfo.totalNum">
@@ -30,7 +28,7 @@
     </div>
      <!--动画的小球-->
     <ball ref="ball"></ball>
-    <cart v-if="false" ref="cart" @onShow="activeShopCart = true" @onHide="activeShopCart = false"></cart>
+    <cart ref="cart" v-if="cartActive"></cart>
   </div>
 </template>
 
@@ -38,6 +36,7 @@
 import SelfSupportShop from './components/self-support-shop';
 import Ball from './components/ball.vue';
 import Cart from './components/cart.vue';
+import { mapState, mapMutations } from 'vuex';
 
 export default {
   name: "Ebusiness",
@@ -49,54 +48,36 @@ export default {
   data() {
     return {
       activeShopCart: false,
-      cartInfo: {
-        totalNum: 0,
-        cartShowPrice: 0,
-      },
       canSubmit: true,
+      cartGoodsObj: {}
+    }
+  },
+  computed: {
+    ...mapState('shop', [
+      'cartInfo',
+      'cartActive',
+    ]),
+  },
+  watch: {
+    'cartInfo.totalNum'(val) {
+      if(!val) this.setCartStatus(false);
     }
   },
   methods: {
-    // 操作购物车列表
+    ...mapMutations('shop', [
+      'setCartStatus',
+    ]),
+    // 显示隐藏购物车列表
     toggleCartList () {
-      if (this.$refs.cart.isShow()) {
-        this.$refs.cart.hide();
-      } else {
-        if (this.cartInfo.totalNum > 0) {
-          this.$refs.cart.show();
-        }
-      }
+      this.setCartStatus(!this.cartActive);
     },
     // 去付款
     goToPay() {
       console.log('去付款');
     },
-    cartAdd (event, goods) {
-      // if (!this.canSubmit) {
-      //   this.canSubmit = true;
-      // }
-      // let addSuc = this.$refs.cart.onCartAdd(goods);
-      // if (addSuc) {
-        this.$refs.ball.drop(event.target);
-      // }
+    cartAdd (event) {
+      this.$refs.ball.drop(event.target);
     },
-    cartSub (goods) {
-      if (!this.canSubmit) {
-        this.canSubmit = true;
-      }
-      this.$refs.cart.onCartSub(goods);
-    },
-    // 计算购物车
-    calcCartData(cartObj) {
-      let tempNum = 0, tempPrice = 0;
-      for(let key in cartObj) {
-        let tempItem = cartObj[key];
-        tempNum += tempItem.num;
-        tempPrice += tempItem.num * tempItem.price;
-      }
-      this.cartInfo.totalNum = tempNum;
-      this.cartInfo.cartShowPrice = tempPrice.toFixed(2);
-    }
   }
 }
 </script>
@@ -192,6 +173,10 @@ export default {
     color: #fff;
     letter-spacing: 0.5px;
     font-weight: 500;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .shop-cart-right {
     flex: 0 0 100px;

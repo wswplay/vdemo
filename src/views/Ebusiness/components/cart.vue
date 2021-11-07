@@ -1,49 +1,34 @@
 <template>
   <div>
-    <div class="cart-list">
+    <div class="cart-list" @click.self="setCartStatus(false)">
       <div class="cart-list-containor">
         <div class="cart-clear-all" >
           <span class="selected-goods">已选商品</span>
-          <i @click="clearCartData" class="clear-cart iconfont ic-ic_delete"></i>
-          <div class="clrar-goods-all">
-            <span @click="clearCartData">清空</span>
+          <div class="clear-btn-wrapper" @click="doClearCart">
+            <i class="clear-cart iconfont ic-ic_delete"></i>
+            <span>清空</span>
           </div>
         </div>
 
-        <div class="cart-list-wrapper" v-for="(cartItem, idx) in cartData" :key="idx">
-          <div class="cart-list-item">
-            <!--<div class="goods-track">{{cartItem.goods.deviceChannel.name}}</div>-->
-            <div class="goods-info" :class="{'active' : cartItem.goods.interestDiscountPrice}">
-              <div class="goods-name">
-                {{cartItem.goods.name}}
-              </div>
-              <div class="layer-list-item-promotion-text-wrapper" v-if="cartItem.goods.isInterestGoods">
-                <span class="card">畅饮卡免费喝</span>
-                <!--<span class="sale">超值特惠</span>-->
-              </div>
+        <div class="cart-list-wrapper">
+          <div class="cart-list-item" v-for="(cartItem, idx) in cartData" :key="idx">
+            <div class="goods-info">
+              <img v-if="cartItem.pic" :src="cartItem.pic" class="goods-image">
+              <img v-else src="@/assets/images/no_goods_pic.png" class="goods-image">
+              <div class="goods-name">{{cartItem.name}}</div>
             </div>
             <div class="goods-price-num">
-              <div class="vip" v-if="cartItem.goods.interestDiscountPrice">
-                <div class="vip-price-box">
-                  <div class="vip-icon">
-                    <img src="@/assets/images/Group12@2x.png"/>
-                  </div>
-                  <span>¥{{cartItem.goods.interestDiscountPrice}}</span>
+              <div class="goods-price">¥{{cartItem.price}}</div>
+            </div>
+              <div class="control-btn-wrapper">
+                <div class="sub-btn" @click="cartListAction(cartItem, false)">
+                  <i class="iconfont ic-ic_subtracting"></i>
                 </div>
-                <div class="goods-price">¥{{cartItem.goods.salePrice}}</div>
+                <div class="goods-num">{{cartItem.num}}</div>
+                <div class="add-btn" @click="cartListAction(cartItem, true)">
+                  <i class="iconfont ic-ic_add"></i>
+                </div>
               </div>
-              <div class="goods-price" v-else>
-                ¥{{cartItem.goods.salePrice}}
-              </div>
-            </div>
-            <div class="goods-number-input">
-              数量增减区域
-              <!-- <inline-number style="display:block;" :min="0" width="50px"
-                button-style="round" v-model="cartItem.num"
-                @onAdd="onCartAdd(cartItem.goods)"
-                @onSub="onCartSub(cartItem.goods)"
-              ></inline-number> -->
-            </div>
           </div>
         </div>
         <div class="triangle">
@@ -51,99 +36,46 @@
         </div>
       </div>
     </div>
-    <!-- <select-coupon ref="selectCoupon" @onSelectCoupon="onSelectCoupon"></select-coupon> -->
-    <!-- <cart-pay ref="CartPay"></cart-pay> -->
   </div>
 </template>
 
 <script>
-  // import selectCoupon from '../../coupon/components/select-coupon.vue';
-  // import {inlineNumber} from '../../../components';
-  // import CartPay from '../components/cart-pay.vue';
+import { mapState, mapMutations, mapActions } from 'vuex';
 
   export default {
     name: 'cart',
     data () {
-      return {
-        showMe: false,
-        couponId: null,
-        checkedPayChannel: {},
-        cartData: [
-          {
-            goods: {
-              interestDiscountPrice: 2.0,
-              name: "斯巴鲁",
-              isInterestGoods: true,
-              salePrice: 6.26,
-              num: 8,
-            }
-          }
-        ],
-        cartInfo: {
-          totalNum: 10
-        },
-        maxBuyNumber: 24,
-      };
+      return {};
     },
+    computed: {
+      ...mapState('shop', [
+        'cartData',
+      ])
+    },
+    mounted() {},
     methods: {
-      isShow () {
-        return this.showMe;
-      },
-      show () {
-        this.showMe = true;
-        this.$emit('onShow');
-      },
-      hide () {
-        this.showMe = false;
-        this.$emit('onHide');
-      },
-      onSelectCoupon (coupon) {
-        this.initSelectCoupon(coupon);
-        if (coupon) {
-          this.couponId = coupon.code;
-        } else {
-          this.couponId = null;
-        }
-      },
-      goToSelectCoupon () {
-        this.$refs.selectCoupon.show(this.couponId, this.cartInfo.purePrice);
-      },
-      goSelectPayType () {
-        this.$refs.CartPay.show();
-      },
-      onCartAdd (goods) {
-        // if (this.cartInfo.totalNum >= this.maxBuyNumber) {
-          // this.$vux.toast.show({text: '购物车太小啦，只能放下' + this.maxBuyNumber + '件商品'});
-          // return false;
-        // }
-        // const cartItem = this.cartData[goods.id + '_' + goods.grade];
-        // if (cartItem && cartItem.num >= goods.stock) {
-        //   this.$vux.toast.show({text: '该商品数量不够了，再看看其他商品吧'});
-        //   return false;
-        // }
-        // this.cartAdd(goods);
-        return true;
-      },
-      onCartSub (goods) {
-        this.cartSub(goods);
-        if (this.cartInfo.totalNum === 0) {
-          this.hide();
-        }
-      },
-      clearCartData () {
+      ...mapMutations('shop', [
+        'selectGoods',
+        'calcCartInfo',
+        'setCartStatus',
+      ]),
+      ...mapActions('shop', [
+        'clearCart',
+      ]),
+      // 清空购物车
+      doClearCart () {
         this.clearCart();
-        this.hide();
-      }
+      },
+      // 购物车操作
+      cartListAction(goods, flag) {
+        this.selectGoods({ goods, flag });
+        this.calcCartInfo();
+      },
     },
-    mounted () {
-    }
   };
 </script>
 
 <style lang="less" scoped>
-  .cart-pop{
-    pointer-events: none;
-  }
   .cart-list{
     padding: 0 15px;
     box-sizing: border-box;
@@ -153,6 +85,15 @@
     bottom: 50px;
     width: 100%;
     z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 60px;
   }
   .triangle{
     position: absolute;
@@ -172,6 +113,7 @@
 
     box-sizing: border-box;
     position: relative;
+    width: 100%;
   }
 
   .cart-clear-all {
@@ -191,12 +133,18 @@
     .selected-goods{
       flex: 1;
     }
-    .clear-cart{
-      font-size: 18px;
-    }
-    .clrar-goods-all{
+    .clear-btn-wrapper {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      color: #999;
+      &:hover {
+        color: red;
+      }
+      .clear-cart{
+        font-size: 18px;
+      }
       span {
-        color: #999;
         letter-spacing: 0.78px;
         margin-left: 5px;
       }
@@ -241,11 +189,16 @@
   .cart-list-item{
     display: flex;
     align-items: center;
-    padding: 20px 0px;
-
-    .goods-info{
+    padding: 5px 0px;
+    .goods-info {
       flex: 1;
-      .goods-name{
+      display: flex;
+      align-items: center;
+      .goods-image {
+        width: 40px;
+        height: 40px;
+      }
+      .goods-name {
         font-size: 16px;
         color: #333333;
         letter-spacing: 0;
@@ -254,6 +207,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        margin-left: 10px;
       }
     }
     /*.active {*/
@@ -335,19 +289,20 @@
         }
       }
     }
-    .goods-number-input{
+    .control-btn-wrapper {
       width: 85px;
       display: flex;
       flex: 0 0 85px;
       justify-content: space-between;
       align-items: center;
       height: 24px;
-      .layer-list-item-amount{
+      .goods-num {
         color: #333;
         font-size: 16px;
       }
-      .sub-btn, .add-btn{
-        i{
+      .sub-btn,
+      .add-btn {
+        i {
           font-size: 30px;
           color: #FE983F;
         }

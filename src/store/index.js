@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import { resetRouter, addRolesRouter } from '@/router';
 import { setToken, removeToken } from '@/utils/auth.js';
+import shop from "./modules/shop";
 
 Vue.use(Vuex);
 
@@ -47,5 +48,7 @@ export default new Vuex.Store({
       })
     },
   },
-  modules: {},
+  modules: {
+    shop,
+  },
 });

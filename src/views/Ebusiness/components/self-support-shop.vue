@@ -71,6 +71,7 @@
 
 <script>
 import * as shopsData from "@/mock/shops.js";
+import { mapMutations, mapState } from 'vuex';
 
 export default {
   name: 'self-support-shop',
@@ -83,14 +84,22 @@ export default {
       currentIndex: 0,
       goodsWrapperScrollAuto: false,
       allGoodsData: shopsData.goodsList,
-      cartData: {},
       gradeHeights: [],
     };
   },
   mounted() {
     this.init();
   },
+  computed: {
+    ...mapState('shop', [
+      'cartData',
+    ])
+  },
   methods: {
+    ...mapMutations('shop', [
+      'selectGoods',
+      'calcCartInfo',
+    ]),
     async init () {
       this.currentIndex = 0;
       let goodsDataRes = shopsData.goodsList;
@@ -122,26 +131,13 @@ export default {
       }, 200);
     },
     cartAdd (event, goods) {
-      this.setCartData(goods, true);
-      this.$emit('cartAdd', event, goods);
+      this.$emit('cartAdd', event);
+      this.selectGoods({ goods, flag: true });
+      this.calcCartInfo();
     },
     cartSub (goods) {
-      this.setCartData(goods, false);
-      // this.$emit('cartSub', goods);
-    },
-    setCartData(goods, isAdd) {
-      const idStr = `${goods.grade}_${goods.id}`;
-      let tempObj = this.cartData[idStr];
-      if(isAdd) {
-        if(tempObj) {
-          tempObj.num++;
-        } else {
-          this.$set(this.cartData, idStr, { num: 1, price: parseFloat(goods.salePrice) });
-        }
-      } else {
-        if(tempObj.num >= 1) tempObj.num--;
-      }
-      this.$emit('calcCartData', this.cartData);
+      this.selectGoods({ goods, flag: false });
+      this.calcCartInfo();
     },
     onGoodsWrapperScroll (e) {
       let scrollHeight = e.target.scrollTop;
