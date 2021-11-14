@@ -4,13 +4,13 @@ const state = {
     cartShowPrice: 0,
   },
   cartData: {},
-  cartActive: false,
+  showCartList: false,
 };
 
 const mutations = {
   // 设置购物车是否展开
-  setCartStatus(state, status) {
-    state.cartActive = status;
+  setCartListStatus(state, status) {
+    state.showCartList = status;
   },
   // 增减商品
   selectGoods(state, data) {
@@ -58,7 +58,7 @@ const actions = {
   clearCart({ commit }) {
     commit('selectGoods');
     commit('calcCartInfo');
-    commit('setCartStatus', false);
+    commit('setCartListStatus', false);
   },
 };
 

@@ -1,39 +1,36 @@
 <template>
-  <div>
-    <div class="cart-list" @click.self="setCartStatus(false)">
-      <div class="cart-list-containor">
-        <div class="cart-clear-all" >
-          <span class="selected-goods">已选商品</span>
-          <div class="clear-btn-wrapper" @click="doClearCart">
-            <i class="clear-cart iconfont ic-ic_delete"></i>
-            <span>清空</span>
-          </div>
+  <div class="cart-list" @click.self="setCartListStatus(false)">
+    <div class="cart-list-containor">
+      <div class="cart-clear-all" >
+        <span class="selected-goods">已选商品</span>
+        <div class="clear-btn-wrapper" @click="doClearCart">
+          <i class="clear-cart iconfont ic-ic_delete"></i>
+          <span>清空</span>
         </div>
-
-        <div class="cart-list-wrapper">
-          <div class="cart-list-item" v-for="(cartItem, idx) in cartData" :key="idx">
-            <div class="goods-info">
-              <img v-if="cartItem.pic" :src="cartItem.pic" class="goods-image">
-              <img v-else src="@/assets/images/no_goods_pic.png" class="goods-image">
-              <div class="goods-name">{{cartItem.name}}</div>
-            </div>
-            <div class="goods-price-num">
-              <div class="goods-price">¥{{cartItem.price}}</div>
-            </div>
-              <div class="control-btn-wrapper">
-                <div class="sub-btn" @click="cartListAction(cartItem, false)">
-                  <i class="iconfont ic-ic_subtracting"></i>
-                </div>
-                <div class="goods-num">{{cartItem.num}}</div>
-                <div class="add-btn" @click="cartListAction(cartItem, true)">
-                  <i class="iconfont ic-ic_add"></i>
-                </div>
+      </div>
+      <div class="cart-list-wrapper">
+        <div class="cart-list-item" v-for="(cartItem, idx) in cartData" :key="idx">
+          <div class="goods-info">
+            <img v-if="cartItem.pic" :src="cartItem.pic" class="goods-image">
+            <img v-else src="@/assets/images/no_goods_pic.png" class="goods-image">
+            <div class="goods-name">{{cartItem.name}}</div>
+          </div>
+          <div class="goods-price-num">
+            <div class="goods-price">¥{{cartItem.price}}</div>
+          </div>
+            <div class="control-btn-wrapper">
+              <div class="sub-btn" @click="cartListAction(cartItem, false)">
+                <i class="iconfont ic-ic_subtracting"></i>
               </div>
-          </div>
+              <div class="goods-num">{{cartItem.num}}</div>
+              <div class="add-btn" @click="cartListAction(cartItem, true)">
+                <i class="iconfont ic-ic_add"></i>
+              </div>
+            </div>
         </div>
-        <div class="triangle">
-          <i class="iconfont ic-ic_triangle"></i>
-        </div>
+      </div>
+      <div class="triangle">
+        <i class="iconfont ic-ic_triangle"></i>
       </div>
     </div>
   </div>
@@ -57,7 +54,7 @@ import { mapState, mapMutations, mapActions } from 'vuex';
       ...mapMutations('shop', [
         'selectGoods',
         'calcCartInfo',
-        'setCartStatus',
+        'setCartListStatus',
       ]),
       ...mapActions('shop', [
         'clearCart',
@@ -66,7 +63,7 @@ import { mapState, mapMutations, mapActions } from 'vuex';
       doClearCart () {
         this.clearCart();
       },
-      // 购物车操作
+      // 操作购物车
       cartListAction(goods, flag) {
         this.selectGoods({ goods, flag });
         this.calcCartInfo();
