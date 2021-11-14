@@ -1,9 +1,9 @@
 <template>
   <div class="Ebusiness">
     <!--商品列表组件-->
-    <SelfSupportShop
+    <ShopList
       @cartAdd="cartAdd"
-    ></SelfSupportShop>
+    ></ShopList>
     <!--购物车-->
     <div class="shop-cart" :class="{active: activeShopCart}" v-if="cartInfo.totalNum">
       <div class="shop-cart-container">
@@ -27,23 +27,24 @@
       </div>
     </div>
      <!--动画的小球-->
-    <ball ref="ball"></ball>
-    <cart ref="cart" v-if="cartActive"></cart>
+    <Ball ref="ball"></Ball>
+    <!--购物车列表-->
+    <CartList ref="cart" v-if="cartActive"></CartList>
   </div>
 </template>
 
 <script>
-import SelfSupportShop from './components/self-support-shop';
+import ShopList from './components/shop-list.vue';
 import Ball from './components/ball.vue';
-import Cart from './components/cart.vue';
+import CartList from './components/cart-list.vue';
 import { mapState, mapMutations } from 'vuex';
 
 export default {
   name: "Ebusiness",
   components: {
-    SelfSupportShop,
+    ShopList,
     Ball,
-    Cart,
+    CartList,
   },
   data() {
     return {
