@@ -3,9 +3,9 @@
     <div
       class="page-title"
       @click="toggleCollapse"
-    >{{textObj.firstEl}}<span>（{{collapseText}}）</span></div>
+    >{{textObj.firstEl}}<span>（当前{{collapseText}}）</span></div>
     <div class="content-box">
-      <pre>
+      <pre v-if="MarginCollapse">
         <code>{{textObj.cssCode}}</code>
       </pre>
     </div>
@@ -64,6 +64,7 @@ export default {
   .content-box {
     text-align: left;
     background: #fff;
+    height: 150px;
   }
 }
 </style>

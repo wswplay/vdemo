@@ -176,4 +176,18 @@ export const CateList = [
       },
     ]
   },
+  {
+    label: 'Echarts',
+    path: '/echarts',
+    meta: {
+      icon: 'el-icon-moon-night'
+    },
+    children: [
+      {
+        label: 'Demo',
+        path: 'demo',
+        component: () => import(/* webpackChunkName: "Demo" */ "@/views/Echarts/Demo.vue"),
+      },
+    ]
+  },
 ]
